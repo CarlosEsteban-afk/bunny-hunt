@@ -66,9 +66,9 @@ const addSprite = () => {
 }
 
 //  This event is emitted from the PhaserGame component:
-const currentScene = (scene) => {
+function currentScene(scene) {
 
-    canMoveSprite.value = (scene.scene.key !== 'MainMenu');
+canMoveSprite.value = (scene.scene.key !== 'MainMenu');
 
 }
 </script>
