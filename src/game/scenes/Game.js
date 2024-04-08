@@ -1,14 +1,12 @@
 import { EventBus } from '../EventBus'
 import { Scene } from 'phaser'
+import Rabbit from './Components/Rabbit'
 
 export class Game extends Scene {
   constructor() {
     super('Game')
   }
   preload() {
-    this.load.image('star', 'star.png')
-  }
-  create() {
 
     const gameWidth = this.sys.game.config.width;
     const gameHeight = this.sys.game.config.height+1;
@@ -23,6 +21,8 @@ export class Game extends Scene {
 
     image.setScale(scaleX, scaleY);
 
+  }
+  create() {
 
     this.time.addEvent({
       delay: 2000,
@@ -37,23 +37,8 @@ export class Game extends Scene {
     const startY = this.sys.game.config.height - 200
 
     this.physics.world.setBounds(0, 0, this.sys.game.config.width, this.sys.game.config.height)
-    const rabbit = this.physics.add.sprite(startX, startY, 'star').setInteractive()
 
-    rabbit.setCollideWorldBounds(true)  
-
-    const jumpPower = 700  
-    rabbit.setVelocityY(-jumpPower) 
-
-    const direction = Math.random() < 0.5 ? -1 : 1
-    const horizontalVelocity = 400
-
-    rabbit.setVelocityX(horizontalVelocity * direction)
-
-    rabbit.setBounce(0.8, 0.8) 
-
-    rabbit.on('pointerdown', () => {
-      rabbit.destroy()
-    })
+   const rabbit = new Rabbit(this, startX, startY, 'star'); // Asegúrate de que 'star' sea cambiado por el asset correcto para el conejo
   }
 
   changeScene() {
