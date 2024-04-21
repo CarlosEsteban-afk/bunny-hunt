@@ -13,6 +13,7 @@ export default class Rabbit extends Phaser.Physics.Arcade.Sprite {
 
     this.initMovement();
   }
+
   initMovement() {
 
     const jumpPower = 700;
