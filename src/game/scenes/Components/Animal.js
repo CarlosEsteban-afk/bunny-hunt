@@ -1,6 +1,5 @@
 import Phaser from 'phaser';
-import { EventBus } from '../../EventBus';
-export default class Rabbit extends Phaser.Physics.Arcade.Sprite {
+export default class Animal extends Phaser.Physics.Arcade.Sprite {
   constructor(scene, x, y, texture) {
     super(scene, x, y, texture);
 
@@ -14,10 +13,8 @@ export default class Rabbit extends Phaser.Physics.Arcade.Sprite {
     this.initMovement();
   }
   initMovement() {
-
     const jumpPower = 700;
     this.setVelocityY(-jumpPower);
-
     const direction = Math.random() < 0.5 ? -1 : 1;
     const horizontalVelocity = 400;
     this.setVelocityX(horizontalVelocity * direction);

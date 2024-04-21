@@ -1,7 +1,6 @@
 import { EventBus } from '../EventBus'
 import { Scene } from 'phaser'
-import Rabbit from './Components/Rabbit'
-import Cat from './Components/Cat'
+import Animal from './Components/Animal'
 
 export class Game extends Scene {
   constructor() {
@@ -21,7 +20,7 @@ export class Game extends Scene {
   createRabbit() {
     const startX = Phaser.Math.Between(100, this.sys.game.config.width - 100)
     const startY = this.sys.game.config.height - 200
-    const rabbit = new Rabbit(this, startX, startY, 'star')
+    const rabbit = new Animal(this, startX, startY, 'star')
     rabbit.on('pointerdown', () => {
       rabbit.destroy()
       this.incrementRabbitsShot()
@@ -30,7 +29,7 @@ export class Game extends Scene {
   createCat() {
     const startX = Phaser.Math.Between(100, this.sys.game.config.width - 100)
     const startY = this.sys.game.config.height - 200
-    const cat = new Cat(this, startX, startY, 'tree')
+    const cat = new Animal(this, startX, startY, 'tree')
     cat.on('pointerdown', () => {
       cat.destroy()
       this.decreaseShootsAvaiable()
