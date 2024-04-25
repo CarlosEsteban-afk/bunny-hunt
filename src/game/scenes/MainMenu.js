@@ -2,8 +2,6 @@ import { EventBus } from '../EventBus'
 import { Scene } from 'phaser'
 
 export class MainMenu extends Scene {
-  logoTween
-
   constructor() {
     super('MainMenu')
   }
@@ -15,15 +13,32 @@ export class MainMenu extends Scene {
   }
 
   setBackground() {
-    this.add.image(750, 450, 'background')
-
-    this.logo = this.add.image(-200, 350, 'logo').setDepth(100)
+    
+    const gameWidth = this.sys.game.config.width
+    const gameHeight = this.sys.game.config.height + 1
+    const image = this.add.image(750, 450, 'background')
+    const imageWidth = image.width
+    const imageHeight = image.height
+    const scaleX = gameWidth / imageWidth
+    const scaleY = gameHeight / imageHeight
+    image.setScale(scaleX, scaleY)
+    
+    this.bunnyLogo = this.add.image(-200, 250, 'bunny-logo').setDepth(100).setScale(0.5)
+    this.huntLogo = this.add.image(2000, 430, 'hunt-logo').setDepth(100).setScale(0.5)
 
     this.tweens.add({
-      targets: this.logo,
+      targets: this.bunnyLogo,
       x: 750,
-      ease: 'Power1',
-      duration: 500
+      duration: 500,
+      ease: 'Power2',
+      onComplete: () => {
+        this.tweens.add({
+          targets: this.huntLogo,
+          x: 750,
+          duration: 500,
+          ease: 'Power2'
+        })
+      }
     })
   }
   setPlayButton() {

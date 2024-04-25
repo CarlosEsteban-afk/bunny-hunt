@@ -14,6 +14,8 @@ export class Boot extends Scene
         this.load.image('background', 'assets/bg.png');
         this.load.image('grass', 'assets/grass.png');
         this.load.image('tree', 'assets/tree.png');
+        this.load.image('bunny-logo', 'assets/bunny-title.png');
+        this.load.image('hunt-logo', 'assets/hunt-title.png');
 
     }
 
