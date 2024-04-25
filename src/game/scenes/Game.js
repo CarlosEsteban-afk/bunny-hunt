@@ -1,5 +1,6 @@
 import { EventBus } from '../EventBus'
 import { Scene } from 'phaser'
+import { scaleImage } from '../../utils/scaleImage' 
 import Animal from './Components/Animal'
 
 export class Game extends Scene {
@@ -10,7 +11,8 @@ export class Game extends Scene {
   }
   preload() {
     this.physics.world.setBounds(0, 0, this.sys.game.config.width, this.sys.game.config.height)
-    this.scaleBackground()
+
+    scaleImage(this, 'grass')
     this.setCounters()
   }
   create() {
@@ -53,18 +55,6 @@ export class Game extends Scene {
     if (this.shootsAvaiable == 0) {
       this.shutdown()
     }
-  }
-
-  scaleBackground() {
-    const gameWidth = this.sys.game.config.width
-    const gameHeight = this.sys.game.config.height + 1
-    const image = this.add.image(gameWidth / 2, gameHeight / 2, 'grass')
-    const imageWidth = image.width
-    const imageHeight = image.height
-    const scaleX = gameWidth / imageWidth
-    const scaleY = gameHeight / imageHeight
-
-    image.setScale(scaleX, scaleY)
   }
 
   setCounters() {

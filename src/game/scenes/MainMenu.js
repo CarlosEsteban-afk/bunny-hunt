@@ -1,3 +1,4 @@
+import { scaleImage } from '../../utils/scaleImage'
 import { EventBus } from '../EventBus'
 import { Scene } from 'phaser'
 
@@ -13,30 +14,24 @@ export class MainMenu extends Scene {
   }
 
   setBackground() {
-    
-    const gameWidth = this.sys.game.config.width
-    const gameHeight = this.sys.game.config.height + 1
-    const image = this.add.image(750, 450, 'background')
-    const imageWidth = image.width
-    const imageHeight = image.height
-    const scaleX = gameWidth / imageWidth
-    const scaleY = gameHeight / imageHeight
-    image.setScale(scaleX, scaleY)
-    
+    scaleImage(this, 'background')
     this.bunnyLogo = this.add.image(-200, 250, 'bunny-logo').setDepth(100).setScale(0.5)
     this.huntLogo = this.add.image(2000, 430, 'hunt-logo').setDepth(100).setScale(0.5)
-
     this.tweens.add({
       targets: this.bunnyLogo,
       x: 750,
       duration: 500,
       ease: 'Power2',
       onComplete: () => {
+        this.sound.play('bullet-sound');
         this.tweens.add({
           targets: this.huntLogo,
           x: 750,
           duration: 500,
-          ease: 'Power2'
+          ease: 'Power2',
+          onComplete: () => {
+            this.sound.play('bullet-sound')
+          }
         })
       }
     })

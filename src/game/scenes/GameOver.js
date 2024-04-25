@@ -1,6 +1,6 @@
 import { EventBus } from '../EventBus'
 import { Scene } from 'phaser'
-
+import { scaleImage } from '../../utils/scaleImage'
 export class GameOver extends Scene {
   constructor() {
     super('GameOver')
@@ -8,6 +8,25 @@ export class GameOver extends Scene {
 
   create() {
     this.setBackground()
+    this.setPlayAgain()
+    EventBus.emit('current-scene-ready', this)
+  }
+
+  setBackground() {
+    scaleImage(this, 'background')
+    this.add
+      .text(750, 450, 'Game Over', {
+        fontFamily: 'Arial Black',
+        fontSize: 64,
+        color: '#ffffff',
+        stroke: '#000000',
+        strokeThickness: 8,
+        align: 'center'
+      })
+      .setOrigin(0.5)
+      .setDepth(100)
+  }
+  setPlayAgain() {
     const playAgain = this.add
       .text(750, 700, 'Play Again', {
         fontFamily: 'Arial Black',
@@ -32,26 +51,6 @@ export class GameOver extends Scene {
     playAgain.on('pointerdown', () => {
       this.scene.start('MainMenu')
     })
-
-    EventBus.emit('current-scene-ready', this)
-  }
-
-  setBackground() {
-    this.cameras.main.setBackgroundColor(0xff0000)
-
-    this.add.image(750, 450, 'background').setAlpha(0.5)
-
-    this.add
-      .text(750, 450, 'Game Over', {
-        fontFamily: 'Arial Black',
-        fontSize: 64,
-        color: '#ffffff',
-        stroke: '#000000',
-        strokeThickness: 8,
-        align: 'center'
-      })
-      .setOrigin(0.5)
-      .setDepth(100)
   }
 }
 
