@@ -53,6 +53,7 @@ export class Game extends Scene {
     this.shootsAvaiable--
     this.shootsAvaiableText.setText('Shots avaiable: ' + this.shootsAvaiable)
     if (this.shootsAvaiable == 0) {
+      this.registry.set('score', this.rabbitsShot);
       this.shutdown()
     }
   }

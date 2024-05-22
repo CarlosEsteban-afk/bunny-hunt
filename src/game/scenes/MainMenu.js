@@ -23,7 +23,7 @@ export class MainMenu extends Scene {
       duration: 500,
       ease: 'Power2',
       onComplete: () => {
-        this.sound.play('bullet-sound');
+        this.sound.play('bullet-sound')
         this.tweens.add({
           targets: this.huntLogo,
           x: 750,
@@ -63,5 +63,6 @@ export class MainMenu extends Scene {
       this.scene.start('Game')
     })
   }
+  
 }
 

@@ -1,11 +1,5 @@
-<script setup>
-import { ref } from 'vue';
-import PhaserGame from './game/PhaserGame.vue';
-
-const phaserRef = ref();
-
-</script>
+<script setup></script>
 
 <template>
-    <PhaserGame ref="phaserRef" @current-active-scene="currentScene" />
+  <router-view> </router-view>
 </template>

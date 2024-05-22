@@ -7,7 +7,9 @@ export class GameOver extends Scene {
   }
 
   create() {
+    
     this.setBackground()
+    this.setScore()
     this.setPlayAgain()
     EventBus.emit('current-scene-ready', this)
   }
@@ -51,6 +53,35 @@ export class GameOver extends Scene {
     playAgain.on('pointerdown', () => {
       this.scene.start('MainMenu')
     })
+  }
+  setScore() {
+    const score = this.registry.get('score')
+    const nombre = this.registry.get('nombre')
+
+    console.log(this.registry.get('nombre'));
+    this.add
+      .text(750, 550, `Score: ${score}`, {
+        fontFamily: 'Arial Black',
+        fontSize: 38,
+        color: '#ffffff',
+        stroke: '#000000',
+        strokeThickness: 8,
+        align: 'center'
+      })
+      .setOrigin(0.5)
+      .setDepth(100)
+
+    this.add
+      .text(750, 350, `Name: ${nombre}`, {
+        fontFamily: 'Arial Black',
+        fontSize: 38,
+        color: '#ffffff',
+        stroke: '#000000',
+        strokeThickness: 8,
+        align: 'center'
+      })
+      .setOrigin(0.5)
+      .setDepth(100)
   }
 }
 
