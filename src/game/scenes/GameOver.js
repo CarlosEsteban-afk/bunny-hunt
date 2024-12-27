@@ -17,7 +17,7 @@ export class GameOver extends Scene {
   setBackground() {
     scaleImage(this, 'background')
     this.add
-      .text(750, 450, 'Game Over', {
+      .text(350, 450, 'Game Over', {
         fontFamily: 'Arial Black',
         fontSize: 64,
         color: '#ffffff',
@@ -58,7 +58,6 @@ export class GameOver extends Scene {
     const score = this.registry.get('score')
     const nombre = this.registry.get('nombre')
 
-    console.log(this.registry.get('nombre'));
     this.add
       .text(750, 550, `Score: ${score}`, {
         fontFamily: 'Arial Black',
@@ -72,7 +71,7 @@ export class GameOver extends Scene {
       .setDepth(100)
 
     this.add
-      .text(750, 350, `Name: ${nombre}`, {
+      .text(750, 450, `Name: ${nombre}`, {
         fontFamily: 'Arial Black',
         fontSize: 38,
         color: '#ffffff',

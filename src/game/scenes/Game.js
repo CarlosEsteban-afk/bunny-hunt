@@ -10,8 +10,6 @@ export class Game extends Scene {
     this.shootsAvaiable = 5
   }
   preload() {
-    this.physics.world.setBounds(0, 0, this.sys.game.config.width, this.sys.game.config.height)
-
     scaleImage(this, 'grass')
     this.setCounters()
   }
